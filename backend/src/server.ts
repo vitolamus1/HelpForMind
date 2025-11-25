@@ -1420,7 +1420,7 @@ io.on('connection', async (socket) => {
   try {
     const user = await prisma.user.findUnique({ where: { id: userId } });
     if (user?.isAdmin) {
-      const requests = [];
+      const requests: Array<{ userId: string; socketId: string; nickname: string }> = [];
       for (const [uid, sid] of helpRequests.entries()) {
         const reqUser = await prisma.user.findUnique({ where: { id: uid }, select: { nickname: true } });
         requests.push({
