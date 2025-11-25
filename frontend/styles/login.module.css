@@ -1,0 +1,341 @@
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 24px;
+  gap: 60px;
+}
+
+.brand {
+  font-size: 48px;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  max-width: 462px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 44px 35px;
+  transform: scale(1.1);
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1f2937;
+  text-align: center;
+  margin: 0 0 32px;
+  letter-spacing: 0.5px;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #1f2937;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: rgba(31, 41, 55, 0.5);
+}
+
+.input:focus {
+  outline: none;
+  background: rgba(102, 126, 234, 0.15);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.remember input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.forgot {
+  font-size: 14px;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}
+
+.submitButton {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 8px;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.switchMode {
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+  margin: 16px 0 0;
+}
+
+.switchLink {
+  background: none;
+  border: none;
+  color: #667eea;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+}
+
+.switchLink:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 32px 0 24px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background: rgba(107, 114, 128, 0.3);
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.divider span {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.anonForm {
+  display: grid;
+  gap: 12px;
+}
+
+.anonTitle {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #4b5563;
+  margin: 0 0 8px;
+}
+
+.anonButton {
+  width: 100%;
+  background: rgba(102, 126, 234, 0.15);
+  color: #667eea;
+  font-weight: 700;
+  font-size: 15px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.anonButton:hover {
+  background: rgba(102, 126, 234, 0.25);
+  border-color: rgba(102, 126, 234, 0.5);
+  transform: translateY(-1px);
+}
+
+.alertOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.2s ease;
+}
+
+.alertBox {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 440px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.alertIcon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.alertTitle {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 16px;
+  color: #1f2937;
+}
+
+.alertMessage {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0 0 24px;
+  white-space: pre-line;
+}
+
+.alertButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.alertCancel,
+.alertConfirm {
+  padding: 12px 32px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.alertCancel {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+}
+
+.alertCancel:hover {
+  background: rgba(107, 114, 128, 0.2);
+}
+
+.alertConfirm {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.alertConfirm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.alertBox.warning {
+  border-top: 4px solid #f59e0b;
+}
+
+.alertBox.warning .alertTitle {
+  color: #f59e0b;
+}
+
+.alertBox.error {
+  border-top: 4px solid #ef4444;
+}
+
+.alertBox.error .alertTitle {
+  color: #ef4444;
+}
+
+.alertBox.success {
+  border-top: 4px solid #10b981;
+}
+
+.alertBox.success .alertTitle {
+  color: #10b981;
+}
+

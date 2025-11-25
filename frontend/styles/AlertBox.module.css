@@ -1,0 +1,129 @@
+.alertOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.2s ease;
+}
+
+.alertBox {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 440px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.alertIcon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.alertTitle {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 16px;
+  color: #1f2937;
+}
+
+.alertMessage {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0 0 24px;
+  white-space: pre-line;
+}
+
+.alertButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.alertCancel,
+.alertConfirm {
+  padding: 12px 32px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.alertCancel {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+}
+
+.alertCancel:hover {
+  background: rgba(107, 114, 128, 0.2);
+}
+
+.alertConfirm {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.alertConfirm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.alertBox.warning {
+  border-top: 4px solid #f59e0b;
+}
+
+.alertBox.warning .alertTitle {
+  color: #f59e0b;
+}
+
+.alertBox.error {
+  border-top: 4px solid #ef4444;
+}
+
+.alertBox.error .alertTitle {
+  color: #ef4444;
+}
+
+.alertBox.success {
+  border-top: 4px solid #10b981;
+}
+
+.alertBox.success .alertTitle {
+  color: #10b981;
+}
+
+.alertBox.info {
+  border-top: 4px solid #3b82f6;
+}
+
+.alertBox.info .alertTitle {
+  color: #3b82f6;
+}

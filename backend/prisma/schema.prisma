@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String           @id @default(uuid())
+  nickname          String           @unique
+  passwordHash      String?          // nullable - nie wymagamy przy logowaniu anonimowym
+  createdAt         DateTime         @default(now())
+  lastSeen          DateTime         @default(now())
+  isBanned          Boolean          @default(false)
+  isAdmin           Boolean          @default(false)
+  lastIpAddress     String?          // ostatni adres IP użytkownika
+  twoFactorSecret   String?          // TOTP secret for 2FA
+  twoFactorEnabled  Boolean          @default(false)
+  moodEntries       MoodEntry[]
+  chatMessages      ChatMessage[]
+  sentRequests      FriendRequest[]  @relation("SentRequests")
+  receivedRequests  FriendRequest[]  @relation("ReceivedRequests")
+  friendsInitiated  Friendship[]     @relation("FriendshipInitiator")
+  friendsReceived   Friendship[]     @relation("FriendshipReceiver")
+  sentMessages      DirectMessage[]  @relation("MessageSender")
+  receivedMessages  DirectMessage[]  @relation("MessageReceiver")
+}
+
+model BannedIP {
+  id          String   @id @default(uuid())
+  ipAddress   String   // Zhaszowany adres IP (bcrypt)
+  bannedById  String   // ID admina, który zbanował
+  reason      String?
+  createdAt   DateTime @default(now())
+}
+
+model MoodEntry {
+  id        String   @id @default(uuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  mood      Int      // 1-5
+  note      String?
+  createdAt DateTime @default(now())
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  role      String   // "user" or "assistant"
+  content   String
+  createdAt DateTime @default(now())
+}
+
+model FriendRequest {
+  id         String   @id @default(uuid())
+  senderId   String
+  receiverId String
+  status     String   @default("pending") // "pending", "accepted", "rejected"
+  createdAt  DateTime @default(now())
+  
+  sender     User     @relation("SentRequests", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver   User     @relation("ReceivedRequests", fields: [receiverId], references: [id], onDelete: Cascade)
+  
+  @@unique([senderId, receiverId])
+}
+
+model Friendship {
+  id          String   @id @default(uuid())
+  user1Id     String
+  user2Id     String
+  createdAt   DateTime @default(now())
+  
+  user1       User     @relation("FriendshipInitiator", fields: [user1Id], references: [id], onDelete: Cascade)
+  user2       User     @relation("FriendshipReceiver", fields: [user2Id], references: [id], onDelete: Cascade)
+  
+  @@unique([user1Id, user2Id])
+}
+
+model DirectMessage {
+  id         String   @id @default(uuid())
+  senderId   String
+  receiverId String
+  content    String
+  read       Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  
+  sender     User     @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver   User     @relation("MessageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  
+  @@index([senderId, receiverId])
+}
